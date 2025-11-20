@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show URL Environment Input
-        run: echo "The URL Environment parameter is: ${{ github.event.inputs.UrlEnvironment }}"
+        run: echo "The URL Environment parameter is: ${{ inputs.UrlEnvironment }}"
