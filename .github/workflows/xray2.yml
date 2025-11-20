@@ -1,0 +1,16 @@
+name: xray2
+
+on:
+  workflow_dispatch:
+    inputs:
+      UrlEnvironment:
+        description: 'URL of the environment to use'
+        required: false
+        default: 'https://example.com'
+
+jobs:
+  test-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show URL Environment Input
+        run: echo "The URL Environment parameter is: ${{ github.event.inputs.UrlEnvironment }}"
