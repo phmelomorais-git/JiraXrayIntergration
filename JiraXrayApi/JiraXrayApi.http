@@ -1,0 +1,6 @@
+@JiraXrayApi_HostAddress = http://localhost:5199
+
+GET {{JiraXrayApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
