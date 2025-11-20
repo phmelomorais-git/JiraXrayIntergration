@@ -7,10 +7,21 @@ on:
         description: 'URL of the environment to use'
         required: true
         default: 'https://example.com'
+      TestName:
+        description: 'Name of the test to run'
+        required: true
+        default: 'Sample Test'
+      TestCode:
+        description: 'Test code / ID'
+        required: true
+        default: 'TC-001'
 
 jobs:
   test-environment:
     runs-on: ubuntu-latest
     steps:
-      - name: Show URL Environment Input
-        run: echo "The URL Environment parameter is:"
+      - name: Show Inputs
+        run: |
+          echo "The URL Environment parameter is: ${{ github.event.inputs.UrlEnvironment }}"
+          echo "The Test Name parameter is: ${{ github.event.inputs.TestName }}"
+          echo "The Test Code parameter is: ${{ github.event.inputs.TestCode }}"
