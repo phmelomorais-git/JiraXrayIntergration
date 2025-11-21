@@ -121,7 +121,7 @@ function addTestsToCollection(collection, testData) {
 }
 
 async function main() {
-  const swaggerUrl = process.argv[2] || process.env.SWAGGER_URL || 'https://localhost:7079/swagger/v1/swagger.json';
+  const swaggerUrl = process.argv[2] || process.env.SWAGGER_URL || 'https://localhost:5199/swagger/v1/swagger.json';
   const testDataPath = process.argv[3] || process.env.TEST_DATA_PATH || path.join(__dirname, 'test-data.json');
   
   try {
@@ -167,7 +167,7 @@ async function main() {
 
       const outDir = path.join(__dirname, 'dist');
       writeFileSyncRecursive(path.join(outDir, 'collection.json'), JSON.stringify(collection, null, 2));
-      writeFileSyncRecursive(path.join(outDir, 'environment.json'), JSON.stringify(environment, null, 2));
+      //writeFileSyncRecursive(path.join(outDir, 'environment.json'), JSON.stringify(environment, null, 2));
 
       console.log('Collection written to', path.join(outDir, 'collection.json'));
       console.log('Environment written to', path.join(outDir, 'environment.json'));
