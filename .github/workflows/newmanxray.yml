@@ -6,6 +6,7 @@ on:
 jobs:
   newman-xray:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
     - name: Checkout
