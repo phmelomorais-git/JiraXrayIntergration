@@ -19,7 +19,7 @@ jobs:
     - name: Install Newman + reporters
       run: |
         npm install -g newman
-        npm install -g newman-reporter-junitxsray
+        npm install -g newman-reporter-junitxray
         npm install -g newman-reporter-junitfull
 
     - name: Run Newman
