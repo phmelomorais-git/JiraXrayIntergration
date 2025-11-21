@@ -12,6 +12,8 @@
     "openapi-to-postmanv2": "^5.4.1"
   },
   "devDependencies": {
-    "newman": "^6.2.1"
+    "newman": "^6.2.1",
+    "newman-reporter-junitfull": "^1.1.1",
+    "newman-reporter-junitxray": "^1.0.3"
   }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="JiraXrayApi - With Sample Data" tests="9">
+  <testsuite id="acb0495f-f720-4a06-ae9a-9248832eed22" name="snowparks" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.012" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Snowparks" time="0.012"/>
+  </testsuite>
+  <testsuite id="7de9c54b-155c-46e4-9835-3c33a768edd1" name="snowparks" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.002" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Create Snowpark" time="0.002"/>
+  </testsuite>
+  <testsuite id="07fcd4b5-d15c-4d31-a9f5-cd3316a83703" name="snowparks" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.016" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Snowpark By Id" time="0.016"/>
+  </testsuite>
+  <testsuite id="4d7f72c5-2cc6-4e4f-8787-922d9fe2d396" name="snowparks" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.017" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Update Snowpark" time="0.017"/>
+  </testsuite>
+  <testsuite id="116f17bf-905d-44fb-8575-fcc3ce117de8" name="snowparks" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.013" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Delete Snowpark" time="0.013"/>
+  </testsuite>
+  <testsuite id="dad1ed26-b8ce-480d-a3c5-e9f5ee48cc76" name="" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.001" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Weather Forecast" time="0.001"/>
+  </testsuite>
+  <testsuite id="e505e928-bf05-4b9a-80d8-8ab6fb364988" name="" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.002" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Snowpark Condition" time="0.002"/>
+  </testsuite>
+  <testsuite id="f08856e7-d3e6-4db6-aec4-6f2a71cde42a" name="" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.002" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Air Quality" time="0.002"/>
+  </testsuite>
+  <testsuite id="87ac382c-141e-4a50-98a1-81acaa8649dd" name="" tests="1" timestamp="2025-11-21T00:29:54.581" time="0.002" failures="0" errors="0">
+    <testcase classname="JiraXrayApiWithSampleData" name="Get Recommended Activities" time="0.002"/>
+  </testsuite>
+</testsuites>

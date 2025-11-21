@@ -1,0 +1,42 @@
+name: Newman Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  newman:
+    name: Run Newman collection
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies (postman)
+        working-directory: postman
+        run: npm ci
+
+      - name: Run Newman
+        working-directory: postman
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        run: |
+          npx newman run "https://api.getpostman.com/collections/9498939-37d1237b-7b54-4090-81c0-d0cf9d8dc26c?apikey=$POSTMAN_API_KEY" -r "cli,junitfull,junitxray" --reporter-junitfull-export postman_echo_junitfull.xml --reporter-junitxray-export postman_echo_junitxray.xml -n 1
+
+      - name: Upload Newman reports (junitfull)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-junitfull
+          path: postman/postman_echo_junitfull.xml
+
+      - name: Upload Newman reports (junitxray)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-junitxray
+          path: postman/postman_echo_junitxray.xml
