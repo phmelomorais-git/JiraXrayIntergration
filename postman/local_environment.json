@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "value": "https://localhost:7079",
+      "value": "http://localhost:5199",
       "key": "baseurl",
       "enabled": true
     }

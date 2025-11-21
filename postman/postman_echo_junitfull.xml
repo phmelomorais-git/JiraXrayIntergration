@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite id="0" hostname="http://localhost" package="snowparks" name="Get Snowparks" tests="2" failures="0" errors="0" timestamp="2025-11-21T00:29:54.577" time="0.012">
+    <testcase classname="snowparks / Get Snowparks" name="Status code is 2xx" time="0.006"/>
+    <testcase classname="snowparks / Get Snowparks" name="Response time is acceptable" time="0.006"/>
+  </testsuite>
+  <testsuite id="1" hostname="http://localhost" package="snowparks" name="Create Snowpark" tests="1" failures="0" errors="0" timestamp="2025-11-21T00:29:54.589" time="0.002">
+    <testcase classname="snowparks / Create Snowpark" name="Status code is 2xx" time="0.002"/>
+  </testsuite>
+  <testsuite id="2" hostname="http://localhost" package="snowparks" name="Get Snowpark By Id" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.591" time="0.016"/>
+  <testsuite id="3" hostname="http://localhost" package="snowparks" name="Update Snowpark" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.607" time="0.017"/>
+  <testsuite id="4" hostname="http://localhost" package="snowparks" name="Delete Snowpark" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.624" time="0.013"/>
+  <testsuite id="5" hostname="http://localhost" package="" name="Get Weather Forecast" tests="3" failures="0" errors="0" timestamp="2025-11-21T00:29:54.637" time="0.001">
+    <testcase classname=" / Get Weather Forecast" name="Status code is 2xx" time="0.000"/>
+    <testcase classname=" / Get Weather Forecast" name="Response time is acceptable" time="0.000"/>
+    <testcase classname=" / Get Weather Forecast" name="Response is JSON" time="0.000"/>
+  </testsuite>
+  <testsuite id="6" hostname="http://localhost" package="" name="Get Snowpark Condition" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.638" time="0.002"/>
+  <testsuite id="7" hostname="http://localhost" package="" name="Get Air Quality" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.640" time="0.002"/>
+  <testsuite id="8" hostname="http://localhost" package="" name="Get Recommended Activities" tests="0" failures="0" errors="0" timestamp="2025-11-21T00:29:54.642" time="0.002"/>
+</testsuites>
