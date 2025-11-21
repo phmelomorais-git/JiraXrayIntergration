@@ -1,0 +1,38 @@
+{
+  "GET /api/example": {
+    "queryParams": {
+      "id": "123",
+      "filter": "active"
+    },
+    "headers": {
+      "Authorization": "Bearer YOUR_TOKEN_HERE"
+    }
+  },
+  "POST /api/example": {
+    "body": {
+      "name": "Test Example",
+      "description": "This is a test example",
+      "isActive": true,
+      "value": 42
+    },
+    "headers": {
+      "Authorization": "Bearer YOUR_TOKEN_HERE",
+      "Content-Type": "application/json"
+    }
+  },
+  "PUT /api/example/:id": {
+    "body": {
+      "name": "Updated Example",
+      "description": "Updated description",
+      "isActive": false
+    },
+    "headers": {
+      "Authorization": "Bearer YOUR_TOKEN_HERE"
+    }
+  },
+  "DELETE /api/example/:id": {
+    "headers": {
+      "Authorization": "Bearer YOUR_TOKEN_HERE"
+    }
+  }
+}

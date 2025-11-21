@@ -1,0 +1,762 @@
+{
+  "item": [
+    {
+      "id": "006fdb64-554d-49c5-9f20-753085080970",
+      "name": "Get Weather Forecast",
+      "request": {
+        "name": "Get Weather Forecast",
+        "description": {},
+        "url": {
+          "path": [
+            "weatherforecast"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET"
+      },
+      "response": [
+        {
+          "id": "8788685f-7742-4f2e-872b-ad10b1b2bdc2",
+          "name": "Success",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "weatherforecast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"date\": \"1946-11-12\",\n    \"temperatureC\": 8280,\n    \"summary\": \"string\",\n    \"temperatureF\": 1810\n  },\n  {\n    \"date\": \"1998-08-23\",\n    \"temperatureC\": 7002,\n    \"summary\": \"string\",\n    \"temperatureF\": 6361\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+              "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+              "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "159cb2e9-5dce-4356-8912-70e02452af4e",
+      "name": "snowparks",
+      "item": [
+        {
+          "id": "971187c5-3493-40e5-ac10-1b6ce1b9a52c",
+          "name": "Get Snowparks",
+          "request": {
+            "name": "Get Snowparks",
+            "description": {},
+            "url": {
+              "path": [
+                "snowparks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ea8c0447-2e20-4eb3-acf4-8d8a1a475e93",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snowparks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+                  "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "826c799a-c45c-418e-a871-f37776c66c1c",
+          "name": "Create Snowpark",
+          "request": {
+            "name": "Create Snowpark",
+            "description": {},
+            "url": {
+              "path": [
+                "snowparks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"location\": \"<string>\",\n  \"isOpen\": \"<boolean>\",\n  \"temperatureC\": \"<integer>\",\n  \"snowDepthCm\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a38f7bd8-f9c8-4cfb-904d-fbde069fc2b4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snowparks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"location\": \"<string>\",\n  \"isOpen\": \"<boolean>\",\n  \"temperatureC\": \"<integer>\",\n  \"snowDepthCm\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+                  "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "470ec88d-d39c-4973-9f69-4b22943277c1",
+          "name": "{id}",
+          "item": [
+            {
+              "id": "8c7bfb47-92ec-40c3-8379-284acec31dd9",
+              "name": "Get Snowpark By Id",
+              "request": {
+                "name": "Get Snowpark By Id",
+                "description": {},
+                "url": {
+                  "path": [
+                    "snowparks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET"
+              },
+              "response": [
+                {
+                  "id": "e8e98a47-5727-42ed-89cb-cb27a9450e90",
+                  "name": "Success",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "snowparks",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "<uuid>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                      "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+                      "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+                    ]
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "270b02db-f68c-44e8-bfec-cf6e6ba24c40",
+              "name": "Update Snowpark",
+              "request": {
+                "name": "Update Snowpark",
+                "description": {},
+                "url": {
+                  "path": [
+                    "snowparks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"location\": \"<string>\",\n  \"isOpen\": \"<boolean>\",\n  \"temperatureC\": \"<integer>\",\n  \"snowDepthCm\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [
+                {
+                  "id": "d45f95d7-2f08-4640-8b3b-45ea4fb24c54",
+                  "name": "Success",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "snowparks",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "<uuid>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"location\": \"<string>\",\n  \"isOpen\": \"<boolean>\",\n  \"temperatureC\": \"<integer>\",\n  \"snowDepthCm\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                      "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+                      "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+                    ]
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "15baea04-1144-4cab-80d5-134de7cd7a23",
+              "name": "Delete Snowpark",
+              "request": {
+                "name": "Delete Snowpark",
+                "description": {},
+                "url": {
+                  "path": [
+                    "snowparks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE"
+              },
+              "response": [
+                {
+                  "id": "ae91e319-f262-4730-8fe2-1b82e52ef605",
+                  "name": "Success",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "snowparks",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "type": "any",
+                          "value": "<uuid>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                      "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+                      "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+                    ]
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fb716e35-a6b3-4f81-919d-daa6102c85da",
+      "name": "Get Snowpark Condition",
+      "request": {
+        "name": "Get Snowpark Condition",
+        "description": {},
+        "url": {
+          "path": [
+            "snowpark",
+            ":location"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "type": "any",
+              "value": "<string>",
+              "key": "location",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "GET"
+      },
+      "response": [
+        {
+          "id": "e51684c4-9cad-443f-9845-813300bb2c6d",
+          "name": "Success",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "snowpark",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+              "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+              "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0ed1359e-7d9a-4302-982c-23f476a86617",
+      "name": "Get Air Quality",
+      "request": {
+        "name": "Get Air Quality",
+        "description": {},
+        "url": {
+          "path": [
+            "airquality"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "key": "city",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "method": "GET"
+      },
+      "response": [
+        {
+          "id": "6c87a2f8-07fb-4bab-89fc-9072b5ceb419",
+          "name": "Success",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "airquality"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+              "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+              "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "18b190a7-4391-4c40-bb57-34571d6410b1",
+      "name": "Get Recommended Activities",
+      "request": {
+        "name": "Get Recommended Activities",
+        "description": {},
+        "url": {
+          "path": [
+            "activities"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "key": "temperatureC",
+              "value": "<integer>"
+            }
+          ],
+          "variable": []
+        },
+        "method": "GET"
+      },
+      "response": [
+        {
+          "id": "398ce4d6-002d-4d4e-b4e9-9d163483f655",
+          "name": "Success",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "temperatureC",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+              "pm.test(\"Response time is acceptable\", function () { pm.expect(pm.response.responseTime).to.be.below(5000); });",
+              "try { pm.test(\"Response is JSON\", function () { pm.response.to.have.header('Content-Type'); var ct = pm.response.headers.get('Content-Type') || pm.response.headers.get('content-type'); pm.expect(ct).to.include('application/json'); pm.response.json(); }); } catch(e) { /* non-json or no body */ }"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4a65178a-0f49-4756-9330-0a6b5c9bc2ef",
+    "name": "JiraXrayApi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "type": "text/plain"
+    }
+  }
+}

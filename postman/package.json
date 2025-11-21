@@ -1,0 +1,17 @@
+{
+  "name": "jira-xray-postman",
+  "version": "0.1.0",
+  "description": "Tools to generate a Postman collection from OpenAPI and run tests with Newman",
+  "private": true,
+  "scripts": {
+    "generate": "node ./generate-collection.js",
+    "run": "npx newman run ./dist/collection.json -e ./dist/environment.json --insecure"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9",
+    "openapi-to-postmanv2": "^5.4.1"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1"
+  }
+}

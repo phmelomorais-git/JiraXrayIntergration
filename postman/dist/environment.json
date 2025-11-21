@@ -1,0 +1,11 @@
+{
+  "id": "env-jiraxray",
+  "name": "JiraXrayLocal",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5199",
+      "enabled": true
+    }
+  ]
+}

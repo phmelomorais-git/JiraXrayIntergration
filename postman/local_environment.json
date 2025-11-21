@@ -1,0 +1,14 @@
+{
+  "values": [
+    {
+      "value": "https://localhost:7079",
+      "key": "baseurl",
+      "enabled": true
+    }
+  ],
+  "name": "Local",
+  "_postman_variable_scope": "environment",
+  "_postman_exported_using": "Postman",
+  "_postman_exported_at": "2025-11-20T19:59:08.4573363-05:00",
+  "id": "5296f9ac-a31e-4b99-8d70-201c47980861"
+}

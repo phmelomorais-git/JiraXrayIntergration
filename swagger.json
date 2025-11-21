@@ -1,0 +1,295 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "JiraXrayApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/weatherforecast": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snowparks": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetSnowparks",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "CreateSnowpark",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SnowparkCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/snowparks/{id}": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetSnowparkById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "UpdateSnowpark",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SnowparkUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "DeleteSnowpark",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/snowpark/{location}": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetSnowparkCondition",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/airquality": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetAirQuality",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/activities": {
+      "get": {
+        "tags": [
+          "JiraXrayApi"
+        ],
+        "operationId": "GetRecommendedActivities",
+        "parameters": [
+          {
+            "name": "temperatureC",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SnowparkCreateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOpen": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "snowDepthCm": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SnowparkUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOpen": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "snowDepthCm": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -19,14 +19,57 @@ builder.Services.AddSingleton(snowparkStore);
 
 var app = builder.Build();
 
+// Centralized JSON error handling middleware
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+
+        // If downstream set an error status code but didn't write a body, return a JSON error
+        if (!context.Response.HasStarted && context.Response.StatusCode >= 400 && context.Response.ContentLength == null)
+        {
+            var err = new ErrorResponse($"Request failed with status code {context.Response.StatusCode}", $"HTTP{context.Response.StatusCode}");
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsJsonAsync(err);
+        }
+    }
+    catch (Exception ex)
+    {
+        // Try to log the exception if a logger is available
+        try
+        {
+            var logger = context.RequestServices.GetService(typeof(Microsoft.Extensions.Logging.ILogger<Program>)) as Microsoft.Extensions.Logging.ILogger;
+            logger?.LogError(ex, "Unhandled exception while processing request {Method} {Path}", context.Request.Method, context.Request.Path);
+        }
+        catch
+        {
+            // ignore logging errors
+        }
+
+        if (!context.Response.HasStarted)
+        {
+            context.Response.Clear();
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.ContentType = "application/json";
+            var err = new ErrorResponse("An unexpected error occurred.", "UnhandledException");
+            await context.Response.WriteAsJsonAsync(err);
+        }
+        else
+        {
+            throw; // can't modify response, rethrow
+        }
+    }
+});
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+// Removed app.UseHttpsRedirection() to allow HTTP traffic.
 
 var summaries = new[]
 {
@@ -56,17 +99,26 @@ app.MapGet("/snowparks", (ConcurrentDictionary<Guid, SnowparkModel> store) =>
 
 app.MapGet("/snowparks/{id}", (Guid id, ConcurrentDictionary<Guid, SnowparkModel> store) =>
 {
-    return store.TryGetValue(id, out var model) ? Results.Ok(model) : Results.NotFound();
+    return store.TryGetValue(id, out var model)
+        ? Results.Ok(model)
+        : Results.NotFound(new ErrorResponse($"Snowpark with id '{id}' not found.", "SnowparkNotFound"));
 })
 .WithName("GetSnowparkById");
 
 app.MapPost("/snowparks", (SnowparkCreateRequest req, ConcurrentDictionary<Guid, SnowparkModel> store, HttpContext http) =>
 {
+    // Basic input validation
+    if (string.IsNullOrWhiteSpace(req?.Name) || string.IsNullOrWhiteSpace(req?.Location))
+    {
+        http.Response.StatusCode = StatusCodes.Status400BadRequest;
+        return Results.Json(new ErrorResponse("Name and Location are required.", "InvalidInput"));
+    }
     var id = Guid.NewGuid();
     var model = new SnowparkModel(id, req.Name, req.Location, req.IsOpen ?? false, req.TemperatureC ?? 0, req.SnowDepthCm ?? 0);
     if (!store.TryAdd(id, model))
     {
-        return Results.Problem("Failed to create snowpark.");
+        http.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        return Results.Json(new ErrorResponse("Failed to create snowpark.", "CreateFailed"));
     }
 
     var uri = $"/snowparks/{id}";
@@ -76,7 +128,12 @@ app.MapPost("/snowparks", (SnowparkCreateRequest req, ConcurrentDictionary<Guid,
 
 app.MapPut("/snowparks/{id}", (Guid id, SnowparkUpdateRequest req, ConcurrentDictionary<Guid, SnowparkModel> store) =>
 {
-    if (!store.TryGetValue(id, out var existing)) return Results.NotFound();
+    if (!store.TryGetValue(id, out var existing))
+        return Results.NotFound(new ErrorResponse($"Snowpark with id '{id}' not found.", "SnowparkNotFound"));
+
+    // If the client sent nothing to update, return 400
+    if (req is null || (req.Name is null && req.Location is null && req.IsOpen is null && req.TemperatureC is null && req.SnowDepthCm is null))
+        return Results.BadRequest(new ErrorResponse("No update fields provided.", "InvalidInput"));
 
     var updated = existing with
     {
@@ -94,14 +151,16 @@ app.MapPut("/snowparks/{id}", (Guid id, SnowparkUpdateRequest req, ConcurrentDic
 
 app.MapDelete("/snowparks/{id}", (Guid id, ConcurrentDictionary<Guid, SnowparkModel> store) =>
 {
-    return store.TryRemove(id, out _) ? Results.NoContent() : Results.NotFound();
+    return store.TryRemove(id, out _)
+        ? Results.NoContent()
+        : Results.NotFound(new ErrorResponse($"Snowpark with id '{id}' not found.", "SnowparkNotFound"));
 })
 .WithName("DeleteSnowpark");
 
 // Existing snowpark condition endpoint (keeps previous behavior)
 app.MapGet("/snowpark/{location?}", (string? location) =>
 {
-    // Basic heuristic: snowpark is more likely open when temperature <= 0°C
+    // Basic heuristic: snowpark is more likely open when temperature <= 0ï¿½C
     var tempC = Random.Shared.Next(-20, 8); // simulated current temp
     var isOpen = tempC <= 0;
     var snowDepth = isOpen ? Random.Shared.Next(20, 200) : Random.Shared.Next(0, 20);
@@ -196,6 +255,9 @@ public record AirQuality(string City, int AQI, string Category, string Advice);
 
 // Activities response
 public record ActivitiesResponse(int TemperatureC, string[] RecommendedActivities, string Notes);
+
+// Standardized error response for API errors
+public record ErrorResponse(string Message, string? ErrorCode = null);
 
 // Make the implicit Program class public for testing
 public partial class Program { }
