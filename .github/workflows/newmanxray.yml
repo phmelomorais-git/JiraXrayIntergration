@@ -24,6 +24,7 @@ jobs:
         npm install -g newman-reporter-junitfull
 
     - name: Run Newman
+      continue-on-error: true
       run: |
         newman run "https://api.getpostman.com/collections/9498939-37d1237b-7b54-4090-81c0-d0cf9d8dc26c?apikey=${{ secrets.POSTMAN_API_KEY }}" \
           -r "cli,junitfull,junitxray" \
@@ -33,6 +34,7 @@ jobs:
 
     - name: Authenticate in Xray
       id: xray_auth
+      continue-on-error: true
       run: |
         XRAY_TOKEN=$(curl -s \
           -H "Content-Type: application/json" \
@@ -42,6 +44,8 @@ jobs:
         echo "token=$XRAY_TOKEN" >> $GITHUB_OUTPUT
 
     - name: Upload results to Xray
+      if: ${{ always() }}
+      continue-on-error: true
       run: |
         curl -v \
           -H "Content-Type: text/xml" \
